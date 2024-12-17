@@ -1,0 +1,386 @@
+<html><head><base href="data:," />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מסיבת חנוכה - גן שיבולים</title>
+<style>
+  body {
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a237e 0%, #303f9f 50%, #1a237e 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: white;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+  }
+
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #ffd700;
+    font-size: 1.8em;
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                 0 0 20px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(45deg, #ffd700, #ff9500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .header-image-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  iframe {
+    border: none;
+    width: 100%;
+    aspect-ratio: 1;
+    display: block;
+  }
+
+  .menorah {
+    text-align: center;
+    margin: 20px 0;
+    overflow: hidden;
+    padding: 20px 0;
+  }
+
+  .menorah svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .flame {
+    animation: flicker 1.5s infinite alternate;
+    transform-origin: center bottom;
+    filter: drop-shadow(0 0 5px #ff9500);
+  }
+
+  @keyframes flicker {
+    0% { 
+      fill: #ffdd00;
+      filter: drop-shadow(0 0 3px #ffdd00);
+    }
+    100% {
+      fill: #ff5722;
+      filter: drop-shadow(0 0 6px #ff5722);
+    }
+  }
+
+  .sufganiya {
+    position: absolute;
+    font-size: 24px;
+    animation: fallDown 8s linear infinite;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  @keyframes fallDown {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .items-list {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    backdrop-filter: blur(5px);
+  }
+
+  .form-container {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    direction: rtl;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background: linear-gradient(45deg, #ffd700, #ff9500);
+    color: #1a237e;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .item-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    animation: cardAppear 0.5s ease-out;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+
+  .item-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .whatsapp-button {
+    display: block;
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+  }
+
+  .whatsapp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    button {
+      width: auto;
+    }
+
+    .whatsapp-button {
+      width: fit-content;
+      min-width: 300px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="floating-dreidels" id="dreidels-container"></div>
+<div id="sufganiyot-container"></div>
+
+<div class="container">
+  <div class="header-image-container">
+    <iframe loading="lazy" 
+            src="https://www.canva.com/design/DAGZidO8fQg/dAO9KIIecact6Ql_Dz0biA/view?embed" 
+            allowfullscreen="allowfullscreen" 
+            allow="fullscreen">
+    </iframe>
+  </div>
+
+  <div class="content-wrapper">
+    <h1>מסיבת חנוכה - גן שיבולים <span class="dreidel">סּ</span></h1>
+    
+    <div class="menorah">
+      <svg width="500" height="150" viewBox="0 0 500 150">
+        <path d="M250,140 L250,40" stroke="#ffd700" stroke-width="4"/>
+        <rect x="245" y="40" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M250,40 L245,30 L250,15 L255,30 Z" fill="#ffdd00"/>
+        
+        <path d="M220,140 L220,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="215" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M220,50 L215,40 L220,25 L225,40 Z" fill="#ffdd00"/>
+        
+        <path d="M190,140 L190,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="185" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M190,50 L185,40 L190,25 L195,40 Z" fill="#ffdd00"/>
+        
+        <path d="M160,140 L160,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="155" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M160,50 L155,40 L160,25 L165,40 Z" fill="#ffdd00"/>
+        
+        <path d="M130,140 L130,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="125" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M130,50 L125,40 L130,25 L135,40 Z" fill="#ffdd00"/>
+        
+        <path d="M280,140 L280,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="275" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M280,50 L275,40 L280,25 L285,40 Z" fill="#ffdd00"/>
+        
+        <path d="M310,140 L310,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="305" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M310,50 L305,40 L310,25 L315,40 Z" fill="#ffdd00"/>
+        
+        <path d="M340,140 L340,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="335" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M340,50 L335,40 L340,25 L345,40 Z" fill="#ffdd00"/>
+        
+        <path d="M370,140 L370,50" stroke="#ffd700" stroke-width="4"/>
+        <rect x="365" y="50" width="10" height="25" fill="#FFA500"/>
+        <path class="flame" d="M370,50 L365,40 L370,25 L375,40 Z" fill="#ffdd00"/>
+        
+        <path d="M100,140 L400,140" stroke="#ffd700" stroke-width="8"/>
+      </svg>
+    </div>
+
+    <div class="form-container">
+      <h2>הרשמה להבאת פריטים למסיבה</h2>
+      <input type="text" id="name" placeholder="שם מלא">
+      <select id="item">
+        <option value="">בחר מה תביא/י</option>
+        <option value="sufganiyot">סופגניות</option>
+        <option value="drinks">שתייה</option>
+        <option value="plates">צלחות חד פעמיות</option>
+        <option value="cups">כוסות חד פעמיות</option>
+        <option value="napkins">מפיות</option>
+        <option value="levivot">לביבות</option>
+      </select>
+      <button onclick="addItem()">הוספה לרשימה</button>
+    </div>
+
+    <div class="items-list">
+      <h2>רשימת הפריטים:</h2>
+      <div id="items-grid" class="items-grid"></div>
+    </div>
+
+    <a href="" id="whatsapp-link" class="whatsapp-button" target="_blank">
+      שלח/י הודעת וואטסאפ עם הפריט הנבחר
+    </a>
+  </div>
+</div>
+
+<script>
+const items = [];
+
+function createFloatingDreidels() {
+    const container = document.getElementById('dreidels-container');
+    const dreidels = ['סּ', 'נּ', 'גּ', 'הּ'];
+    
+    for (let i = 0; i < 20; i++) {
+        const dreidel = document.createElement('div');
+        dreidel.className = 'floating-dreidel';
+        dreidel.textContent = dreidels[Math.floor(Math.random() * dreidels.length)];
+        dreidel.style.left = `${Math.random() * 100}%`;
+        dreidel.style.animationDelay = `${Math.random() * 15}s`;
+        container.appendChild(dreidel);
+    }
+}
+
+function createSufganiyot() {
+    const container = document.getElementById('sufganiyot-container');
+    const sufganiya = '🍩';
+    
+    for (let i = 0; i < 15; i++) {
+        const element = document.createElement('div');
+        element.className = 'sufganiya';
+        element.textContent = sufganiya;
+        element.style.left = `${Math.random() * 100}%`;
+        element.style.animationDelay = `${Math.random() * 8}s`;
+        container.appendChild(element);
+    }
+}
+
+function addItem() {
+    const name = document.getElementById('name').value;
+    const item = document.getElementById('item').value;
+    const itemText = document.getElementById('item').options[document.getElementById('item').selectedIndex].text;
+    
+    if (name && item) {
+        items.push({ name, item: itemText });
+        updateList();
+        updateWhatsappLink(name, itemText);
+        document.getElementById('name').value = '';
+        document.getElementById('item').value = '';
+    } else {
+        alert('נא למלא את כל השדות');
+    }
+}
+
+function updateList() {
+    const grid = document.getElementById('items-grid');
+    grid.innerHTML = '';
+    
+    items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>מביא/ה: ${item.item}</p>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+function updateWhatsappLink(name, item) {
+    const whatsappLink = document.getElementById('whatsapp-link');
+    const message = `שלום, אני ${name} ואביא ${item} למסיבת החנוכה של גן שיבולים`;
+    const encodedMessage = encodeURIComponent(message);
+    whatsappLink.href = `https://wa.me/972526214406?text=${encodedMessage}`;
+}
+
+// Initialize
+document.getElementById('whatsapp-link').href = "https://wa.me/972526214406";
+createFloatingDreidels();
+createSufganiyot();
+</script>
+</body>
+</html>
